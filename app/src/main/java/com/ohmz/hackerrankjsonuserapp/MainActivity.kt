@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.ohmz.hackerrankjsonuserapp.ui.theme.HackerRankJsonUserAppTheme
-import com.ohmz.hackerrankjsonuserapp.ui.theme.MainScreen
+import com.ohmz.hackerrankjsonuserapp.ui.MainScreen
 
 
 class MainActivity : ComponentActivity() {

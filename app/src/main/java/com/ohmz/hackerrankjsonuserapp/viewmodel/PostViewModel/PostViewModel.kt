@@ -19,4 +19,13 @@ class PostViewModel(private val repository: PostRepository) : ViewModel() {
             _posts.value = result ?: emptyList()
         }
     }
+
+    fun updatePost(updatedPost: Post) {
+        _posts.value = _posts.value.map { if (it.id == updatedPost.id) updatedPost else it }
+    }
+
+    fun deletePost(postId: Int) {
+        _posts.value = _posts.value.filterNot { it.id == postId }
+    }
+
 }
