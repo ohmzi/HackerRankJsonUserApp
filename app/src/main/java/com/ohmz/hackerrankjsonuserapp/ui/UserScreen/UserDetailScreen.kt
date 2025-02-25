@@ -53,16 +53,30 @@ import com.ohmz.hackerrankjsonuserapp.R
 import com.ohmz.hackerrankjsonuserapp.data.Post
 import com.ohmz.hackerrankjsonuserapp.data.Todo
 import com.ohmz.hackerrankjsonuserapp.data.User
+import com.ohmz.hackerrankjsonuserapp.openAI.getGenderForName
 import com.ohmz.hackerrankjsonuserapp.viewmodel.PostViewModel.PostViewModel
 import com.ohmz.hackerrankjsonuserapp.viewmodel.TodoViewModel.TodoViewModel
 
 enum class SortOrder { ASCENDING, DESCENDING }
+const val OPENAI_API_KEY = "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"
 
 @Composable
 fun UserDetailScreen(
-    user: User, postViewModel: PostViewModel, todoViewModel: TodoViewModel, onBack: () -> Unit
+    user: User,
+    postViewModel: PostViewModel,
+    todoViewModel: TodoViewModel,
+    onBack: () -> Unit
 ) {
     LaunchedEffect(user.id) { postViewModel.getPosts(user.id) }
+    var gender by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(user.name) {
+        gender = getGenderForName(user.name, OPENAI_API_KEY)
+    }
+    val avatarResource = when (gender) {
+        "male" -> R.drawable.male
+        "female" -> R.drawable.female
+        else -> R.drawable.ic_launcher_foreground
+    }
     val posts by postViewModel.posts.collectAsState()
     val todos by todoViewModel.todos.collectAsState()
     var sortOrder by remember { mutableStateOf(SortOrder.ASCENDING) }
@@ -104,15 +118,11 @@ fun UserDetailScreen(
                         .padding(top = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    val avatarPainter: Painter =
-                        painterResource(id = R.drawable.ic_launcher_foreground)
+                    val avatarPainter: Painter = painterResource(id = avatarResource)
                     Image(
                         painter = avatarPainter,
                         contentDescription = "User Avatar",
-                        modifier = Modifier
-                            .size(80.dp)
-                            .clip(CircleShape)
-                            .border(2.dp, Color.White, CircleShape)
+                        modifier = Modifier.size(80.dp).clip(CircleShape).border(2.dp, Color.White, CircleShape)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
