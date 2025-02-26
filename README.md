@@ -3,7 +3,7 @@
 This project is an Android application built with Kotlin and Jetpack Compose that displays users, their posts, and to-do lists using data from [JSONPlaceholder](https://jsonplaceholder.typicode.com/). In addition, the app integrates with OpenAI’s API to determine the gender of a user (based on their name) and displays an appropriate avatar image (male or female).
 
 ![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/UserList.png)
-![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/UserProfile.png)
+![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/UserProfile1.png)
 ![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/EditPost.png)
 ![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/ToDo.png)
 
