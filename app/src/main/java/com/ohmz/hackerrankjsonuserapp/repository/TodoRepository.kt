@@ -9,6 +9,11 @@ class TodoRepository {
         return if (response.isSuccessful) response.body() else null
     }
 
+    suspend fun fetchAllTodos(): List<Todo>? {
+        val response = RetrofitInstance.api.getAllTodos()
+        return if (response.isSuccessful) response.body() else null
+    }
+
     suspend fun updateTodoOnServer(todo: Todo): Todo? {
         val response = RetrofitInstance.api.updateTodo(todo.id, todo)
         return if (response.isSuccessful) response.body() else null
