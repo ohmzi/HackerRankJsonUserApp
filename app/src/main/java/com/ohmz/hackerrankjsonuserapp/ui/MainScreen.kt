@@ -22,7 +22,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,20 +30,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ohmz.hackerrankjsonuserapp.data.User
-import com.ohmz.hackerrankjsonuserapp.repository.PostRepository
-import com.ohmz.hackerrankjsonuserapp.repository.TodoRepository
-import com.ohmz.hackerrankjsonuserapp.repository.UserRepository
-import com.ohmz.hackerrankjsonuserapp.ui.UserScreen.TodoItem
-import com.ohmz.hackerrankjsonuserapp.ui.UserScreen.UserDetailScreen
-import com.ohmz.hackerrankjsonuserapp.ui.UserScreen.UserList
-import com.ohmz.hackerrankjsonuserapp.ui.UserScreen.UserRow
-import com.ohmz.hackerrankjsonuserapp.viewmodel.PostViewModel.PostViewModel
-import com.ohmz.hackerrankjsonuserapp.viewmodel.PostViewModel.PostViewModelFactory
-import com.ohmz.hackerrankjsonuserapp.viewmodel.TodoViewModel.TodoViewModel
-import com.ohmz.hackerrankjsonuserapp.viewmodel.TodoViewModel.TodoViewModelFactory
-import com.ohmz.hackerrankjsonuserapp.viewmodel.UserViewModel.UserViewModel
-import com.ohmz.hackerrankjsonuserapp.viewmodel.UserViewModel.UserViewModelFactory
+import com.ohmz.hackerrankjsonuserapp.components.post.repo.TodoRepository
+import com.ohmz.hackerrankjsonuserapp.components.post.viewModel.PostViewModel
+import com.ohmz.hackerrankjsonuserapp.components.post.viewModel.PostViewModelFactory
+import com.ohmz.hackerrankjsonuserapp.components.todo.repo.PostRepository
+import com.ohmz.hackerrankjsonuserapp.components.todo.todoViewModel.TodoViewModel
+import com.ohmz.hackerrankjsonuserapp.components.todo.todoViewModel.TodoViewModelFactory
+import com.ohmz.hackerrankjsonuserapp.components.todo.ui.AllTodosScreen
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.data.User
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.repo.UserRepository
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.ui.UserDetailScreen
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.ui.UserList
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.ui.UserRow
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.viewModel.UserViewModel
+import com.ohmz.hackerrankjsonuserapp.components.userScreen.viewModel.UserViewModelFactory
 
 enum class MainScreenOption {
     Home, AllUsers, AllTodos, SearchUsers, UserDetail
@@ -192,22 +191,3 @@ fun MainScreen() {
         }
     }
 }
-
-@Composable
-fun AllTodosScreen(todoViewModel: TodoViewModel) {
-    LaunchedEffect(Unit) { todoViewModel.getAllTodos() }
-    val todos by todoViewModel.todos.collectAsState()
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        items(todos) { todo ->
-            TodoItem(todo = todo, onToggle = { todoId ->
-                todoViewModel.toggleTodoCompletion(todoId)
-            })
-        }
-    }
-}
-
-
