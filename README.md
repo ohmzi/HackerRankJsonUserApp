@@ -83,21 +83,3 @@ This project is an Android application built with Kotlin and Jetpack Compose tha
    The app automatically checks the user's name with OpenAI and displays the corresponding avatar.  
    Use the **Posts** tab to view, sort, edit, or delete posts.  
    Use the **Todo** tab to view and interact with to-do items.
-
----
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Open a Pull Request.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
