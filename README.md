@@ -8,6 +8,7 @@ This project is an Android application built with Kotlin and Jetpack Compose tha
 ![screenshot](app/src/main/java/com/ohmz/hackerrankjsonuserapp/sampleScreenshots/ToDo.png)
 
 ---
+---
 
 ## Features
 
